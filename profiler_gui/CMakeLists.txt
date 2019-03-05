@@ -78,6 +78,8 @@ if (Qt5Widgets_FOUND)
         target_compile_definitions(profiler_gui PRIVATE -DSTRSAFE_NO_DEPRECATE)
     endif ()
 
+    target_link_libraries(profiler_gui PUBLIC "-framework Security")
+
     install(
         TARGETS
         profiler_gui
