@@ -4,14 +4,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/HunterGate.cmake)
-HunterGate(
-    URL "https://api.github.com/repos/You-i-Labs/Hunter/tarball/v0.21.10-youi-p3?access_token=$ENV{GITHUB_ACCESS_TOKEN}"
-    SHA1 "72645851d85509ecd5602231e5d4655b1c56d03d"
-)
-
 hunter_add_package(Qt)
-find_package(Qt5Core REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
@@ -77,7 +70,7 @@ if (Qt5Widgets_FOUND)
         target_link_libraries(profiler_gui PUBLIC "-framework Security")
     endif()
 
-    target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::Core Qt5::PrintSupport easy_profiler)
+    target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::PrintSupport easy_profiler)
     if (WIN32)
         target_compile_definitions(profiler_gui PRIVATE -D_WIN32_WINNT=0x0600)
     endif ()
@@ -88,6 +81,8 @@ if (Qt5Widgets_FOUND)
     install(
         TARGETS
         profiler_gui
+        CONFIGURATIONS
+        Release
         RUNTIME
         DESTINATION
         bin
