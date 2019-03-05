@@ -11,7 +11,7 @@ HunterGate(
 )
 
 hunter_add_package(Qt)
-find_package(Qt5Base REQUIRED)
+find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 if (Qt5Widgets_FOUND)
