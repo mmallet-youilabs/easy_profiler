@@ -70,15 +70,18 @@ if (Qt5Widgets_FOUND)
         resources.qrc
         resources.rc
     )
-    target_link_libraries(profiler_gui Qt5::Widgets easy_profiler)
+
+    if (APPLE)
+        target_link_libraries(profiler_gui PUBLIC "-framework Security")
+    endif()
+
+    target_link_libraries(profiler_gui PUBLIC Qt5::Widgets easy_profiler)
     if (WIN32)
         target_compile_definitions(profiler_gui PRIVATE -D_WIN32_WINNT=0x0600)
     endif ()
     if (MINGW)
         target_compile_definitions(profiler_gui PRIVATE -DSTRSAFE_NO_DEPRECATE)
     endif ()
-
-    target_link_libraries(profiler_gui PUBLIC "-framework Security")
 
     install(
         TARGETS
