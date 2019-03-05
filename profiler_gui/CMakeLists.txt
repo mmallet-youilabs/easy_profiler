@@ -11,7 +11,8 @@ HunterGate(
 )
 
 hunter_add_package(Qt)
-find_package(Qt5Widgets)
+find_package(Qt5Base REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 
 if (Qt5Widgets_FOUND)
     if (NOT("${CMAKE_BUILD_TYPE}" STREQUAL "Debug") AND WIN32)
