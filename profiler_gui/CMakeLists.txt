@@ -12,7 +12,7 @@ HunterGate(
 
 hunter_add_package(Qt)
 find_package(Qt5Core REQUIRED)
-find_package(Qt5Print REQUIRED)
+find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 if (Qt5Widgets_FOUND)
@@ -77,7 +77,7 @@ if (Qt5Widgets_FOUND)
         target_link_libraries(profiler_gui PUBLIC "-framework Security")
     endif()
 
-    target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::Core Qt5::Print easy_profiler)
+    target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::Core Qt5::PrintSupport easy_profiler)
     if (WIN32)
         target_compile_definitions(profiler_gui PRIVATE -D_WIN32_WINNT=0x0600)
     endif ()
