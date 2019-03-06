@@ -68,9 +68,9 @@ if (Qt5Widgets_FOUND)
         resources.rc
     )
 
-    # if (APPLE)
-    #     target_link_libraries(profiler_gui PUBLIC "-framework Security")
-    # endif()
+    if (APPLE)
+        target_link_libraries(profiler_gui PUBLIC "-framework Security")
+    endif()
 
     target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::PrintSupport easy_profiler)
     if (WIN32)
