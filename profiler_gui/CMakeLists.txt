@@ -4,6 +4,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+include(hunter_configuration_types)
+hunter_configuration_types(Qt CONFIGURATION_TYPES Release)
 hunter_add_package(Qt)
 find_package(Qt5PrintSupport REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -66,9 +68,9 @@ if (Qt5Widgets_FOUND)
         resources.rc
     )
 
-    if (APPLE)
-        target_link_libraries(profiler_gui PUBLIC "-framework Security")
-    endif()
+    # if (APPLE)
+    #     target_link_libraries(profiler_gui PUBLIC "-framework Security")
+    # endif()
 
     target_link_libraries(profiler_gui PUBLIC Qt5::Widgets Qt5::PrintSupport easy_profiler)
     if (WIN32)

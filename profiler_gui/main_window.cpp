@@ -245,6 +245,8 @@ void DockWidget::onTopLevelChanged()
     m_floatingButton->update();
 }
 
+#include <QImageReader>
+
 void MainWindow::configureSizes()
 {
     QWidget w(this);
@@ -303,7 +305,20 @@ void MainWindow::configureSizes()
 
 MainWindow::MainWindow() : Parent(), m_theme("default"), m_lastAddress("localhost"), m_lastPort(profiler::DEFAULT_PORT)
 {
-    { QIcon icon(":/images/logo"); if (!icon.isNull()) QApplication::setWindowIcon(icon); }
+
+
+
+    { QIcon icon(":/images/logo"); if (!icon.isNull())
+        QApplication::setWindowIcon(icon);
+    else {
+        int i = 0;
+        i++;
+    }}
+
+    QFile file(":/images/default/close.svg");
+    file.size();
+    bool readable = file.isReadable();
+    
 
     setObjectName("ProfilerGUI_MainWindow");
     setWindowTitle(EASY_DEFAULT_WINDOW_TITLE);
@@ -372,8 +387,20 @@ MainWindow::MainWindow() : Parent(), m_theme("default"), m_lastAddress("localhos
         m_loadActionMenu->addAction(action);
     }
 
-    m_saveAction = toolbar->addAction(QIcon(imagePath("save")), tr("Save"), this, SLOT(onSaveFileClicked(bool)));
+    QString path = imagePath("save");
+    QIcon icon = QIcon(path);
+    m_saveAction = toolbar->addAction(icon, tr("Save"), this, SLOT(onSaveFileClicked(bool)));
     m_deleteAction = toolbar->addAction(QIcon(imagePath("delete")), tr("Clear all"), this, SLOT(onDeleteClicked(bool)));
+
+    auto values = QImageReader::supportedImageFormats();
+    for (auto value : values)
+    {
+        auto string = value.toStdString();
+        int i = 0;
+        i++;
+
+        std::cout << "Supported image file format: " << string << std::endl;
+    }
 
     m_saveAction->setEnabled(false);
     m_deleteAction->setEnabled(false);

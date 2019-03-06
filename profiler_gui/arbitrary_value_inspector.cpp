@@ -1903,7 +1903,8 @@ ArbitraryValuesWidget::ArbitraryValuesWidget(bool _isMainWidget, profiler::threa
     auto actionGroup = new QActionGroup(this);
     actionGroup->setExclusive(true);
 
-    auto actionRegulatChart = new QAction(QIcon(imagePath("yx-chart")), tr("Regular chart"), actionGroup);
+    QIcon icon = QIcon(imagePath("yx-chart"));
+    auto actionRegulatChart = new QAction(icon, tr("Regular chart"), actionGroup);
     actionRegulatChart->setCheckable(true);
     actionRegulatChart->setChecked(true);
     tb->addAction(actionRegulatChart);

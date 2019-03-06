@@ -67,6 +67,7 @@ int main(int argc, char **argv)
     ThreadPool::instance();
 
     QApplication app(argc, argv);
+    Q_INIT_RESOURCE(resources);
 
     // Instanciate easy globals after QApplication to allow creation of global fonts, and on the main thread to avoid data races
     profiler_gui::Globals::instance();
